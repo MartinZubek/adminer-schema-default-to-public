@@ -6,7 +6,7 @@ class AdminerSchemaDefaultToPublic {
 		if (connection()) {
 			// PostgreSQL only
 			if (!in_array(strtolower(connection()->extension), ['pgsql', 'pdo_pgsql'])) {
-				return;
+				return DB;
 			}
 
 			if (get_schema() !== 'public') {
