@@ -9,7 +9,9 @@ class AdminerSchemaDefaultToPublic {
 				return;
 			}
 
-			queries("SET search_path = " . get_schema() . ", public;");
+			if (get_schema() !== 'public') {
+				queries("SET search_path = " . get_schema() . ", public;");
+			}
 		}
 		return DB;
 	}
