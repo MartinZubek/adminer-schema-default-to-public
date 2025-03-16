@@ -3,16 +3,16 @@
 class AdminerSchemaDefaultToPublic {
 
 	function database() {
-		if (connection()) {
+		if (Adminer\connection()) {
 			// PostgreSQL only
-			if (!in_array(strtolower(connection()->extension), ['pgsql', 'pdo_pgsql'])) {
-				return DB;
+			if (!in_array(strtolower(Adminer\connection()->extension), ['pgsql', 'pdo_pgsql'])) {
+				return Adminer\DB;
 			}
 
-			if (get_schema() !== 'public') {
-				queries("SET search_path = " . get_schema() . ", public;");
+			if (Adminer\get_schema() !== 'public') {
+				Adminer\queries("SET search_path = " . Adminer\get_schema() . ", public;");
 			}
 		}
-		return DB;
+		return Adminer\DB;
 	}
 }
